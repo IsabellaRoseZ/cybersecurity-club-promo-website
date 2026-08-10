@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cybersecurity Club Rush</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #140500;
       --panel: rgba(45, 10, 4, 0.88);
-      --panel-strong: #3a0c05;
       --text: #fff8df;
       --muted: #ffd993;
       --red: #ff2f1f;
@@ -22,8 +23,14 @@
       --shadow: 0 24px 80px rgba(74, 9, 0, 0.55);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -55,8 +62,15 @@
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
     }
 
-    main, footer { position: relative; z-index: 1; }
-    section { scroll-margin-top: 5.5rem; }
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      scroll-margin-top: 5.5rem;
+    }
 
     .nav {
       max-width: 1320px;
@@ -82,13 +96,21 @@
       margin-right: 0.2rem;
     }
 
-    .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
       font-weight: 800;
     }
-    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
 
     .hero {
       max-width: 1320px;
@@ -100,7 +122,10 @@
       align-items: center;
     }
 
-    .hero-copy { min-width: 0; }
+    .hero-copy {
+      min-width: 0;
+    }
+
     .eyebrow {
       color: var(--yellow);
       font-weight: 900;
@@ -109,7 +134,13 @@
       font-size: 0.78rem;
     }
 
-    h1, h2, h3, p { margin-top: 0; }
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
     h1 {
       font-size: clamp(3rem, 6vw, 5.6rem);
       line-height: 0.92;
@@ -117,20 +148,41 @@
       margin-bottom: 1.3rem;
       max-width: 760px;
     }
+
     h2 {
       font-size: clamp(2rem, 4vw, 3.5rem);
       letter-spacing: -0.06em;
       margin-bottom: 0.8rem;
     }
-    h3 { font-size: 1.55rem; margin-bottom: 0.75rem; }
-    .hero-text, .section-heading p, .join-section p, .challenge-card p {
+
+    h3 {
+      font-size: 1.55rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-text,
+    .section-heading p,
+    .join-section p,
+    .challenge-card p {
       color: var(--muted);
       line-height: 1.65;
     }
-    .hero-text { font-size: 1.12rem; max-width: 720px; }
 
-    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.6rem; }
-    .button, .flag-form button, .hint-button {
+    .hero-text {
+      font-size: 1.12rem;
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .button,
+    .flag-form button,
+    .hint-button {
       border: 0;
       cursor: pointer;
       border-radius: 999px;
@@ -142,23 +194,36 @@
       justify-content: center;
       transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
     }
-    .button:hover, .flag-form button:hover, .hint-button:hover { transform: translateY(-2px); }
-    .primary, .flag-form button {
+
+    .button:hover,
+    .flag-form button:hover,
+    .hint-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary,
+    .flag-form button {
       background: linear-gradient(135deg, var(--yellow), var(--orange));
       color: #260600;
       box-shadow: 0 12px 30px rgba(255, 210, 31, 0.28);
     }
-    .secondary, .hint-button {
+
+    .secondary,
+    .hint-button {
       color: var(--text);
       background: rgba(255, 210, 31, 0.08);
       border: 1px solid var(--line);
     }
 
-    .terminal-card, .challenge-card, .stats article, .join-section {
+    .terminal-card,
+    .challenge-card,
+    .stats article,
+    .join-section {
       background: var(--panel);
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
+
     .terminal-card {
       border-radius: 24px;
       overflow: hidden;
@@ -167,29 +232,51 @@
       max-width: 520px;
       justify-self: end;
     }
+
     .terminal-top {
       background: rgba(255, 255, 255, 0.08);
       padding: 0.9rem 1rem;
       display: flex;
       gap: 0.45rem;
     }
+
     .terminal-top span {
       width: 0.72rem;
       height: 0.72rem;
       border-radius: 50%;
       background: var(--red);
     }
-    .terminal-top span:nth-child(2) { background: var(--yellow); }
-    .terminal-top span:nth-child(3) { background: var(--orange); }
+
+    .terminal-top span:nth-child(2) {
+      background: var(--yellow);
+    }
+
+    .terminal-top span:nth-child(3) {
+      background: var(--orange);
+    }
+
     .terminal-body {
       padding: 1.3rem;
       min-height: 290px;
       font-family: "JetBrains Mono", monospace;
       color: #fff1c1;
     }
-    .prompt, .green, .cursor { color: var(--yellow); }
-    .cursor { animation: blink 1s steps(2, start) infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
+
+    .prompt,
+    .green,
+    .cursor {
+      color: var(--yellow);
+    }
+
+    .cursor {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
 
     .stats {
       max-width: 1320px;
@@ -199,30 +286,66 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
-    .stats article { border-radius: 18px; padding: 1.2rem; }
-    .stats strong { display: block; margin-bottom: 0.45rem; color: var(--yellow); }
-    .stats span { color: var(--muted); }
 
-    .section { max-width: 1320px; margin: 0 auto; padding: 4rem 1.25rem; }
-    .section-heading { max-width: 820px; margin-bottom: 2rem; }
-    code, pre { font-family: "JetBrains Mono", monospace; }
-
-    .challenge-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-    .challenge-card {
-      border-radius: 28px;
-      padding: 1.35rem;
+    .stats article {
+      border-radius: 18px;
+      padding: 1.2rem;
     }
-    .challenge-card.steg { border-color: rgba(255, 210, 31, 0.48); }
-    .challenge-card.crypto { border-color: rgba(255, 107, 26, 0.48); }
-    .challenge-card.forensics { border-color: rgba(255, 47, 31, 0.48); }
 
-    .challenge-layout {
+    .stats strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--yellow);
+    }
+
+    .stats span {
+      color: var(--muted);
+    }
+
+    .section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 4rem 1.25rem;
+    }
+
+    .section-heading {
+      max-width: 820px;
+      margin-bottom: 2rem;
+    }
+
+    code,
+    pre {
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .challenge-grid {
       display: grid;
-      grid-template-columns: 330px minmax(0, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.25rem;
       align-items: stretch;
     }
-    .challenge-media {
+
+    .challenge-card {
+      border-radius: 28px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .challenge-card.steg {
+      border-color: rgba(255, 210, 31, 0.48);
+    }
+
+    .challenge-card.crypto {
+      border-color: rgba(255, 107, 26, 0.48);
+    }
+
+    .challenge-card.forensics {
+      border-color: rgba(255, 47, 31, 0.48);
+    }
+
+    .challenge-top {
       border: 1px solid var(--line);
       background: rgba(70, 9, 0, 0.36);
       border-radius: 22px;
@@ -230,10 +353,15 @@
       display: grid;
       place-items: center;
       text-align: center;
-      min-height: 250px;
+      margin-bottom: 1rem;
+      min-height: 170px;
     }
-    .challenge-body { min-width: 0; }
-    .card-icon { font-size: 2.2rem; margin-bottom: 0.55rem; }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.55rem;
+    }
+
     .tag {
       display: inline-flex;
       color: #260600 !important;
@@ -246,19 +374,46 @@
       letter-spacing: 0.08em;
       margin-bottom: 0.6rem;
     }
-    .crypto .tag { background: var(--orange); }
-    .forensics .tag { background: var(--gold); }
+
+    .crypto .tag {
+      background: var(--orange);
+    }
+
+    .forensics .tag {
+      background: var(--gold);
+    }
 
     .stego-preview {
       max-width: 100%;
-      width: 260px;
+      width: 220px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 18px;
       border: 1px solid var(--line);
       margin-bottom: 1rem;
     }
-    .cipher, .clue-box {
+
+    .pcap-box {
+      width: 100%;
+      display: grid;
+      gap: 0.9rem;
+      justify-items: center;
+    }
+
+    .pcap-icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .pcap-name {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--yellow);
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .cipher,
+    .clue-box {
       border-radius: 16px;
       border: 1px solid var(--line);
       background: rgba(70, 9, 0, 0.36);
@@ -266,18 +421,35 @@
       margin: 1rem 0;
       color: var(--text);
     }
-    .cipher { overflow-x: auto; color: var(--yellow); }
-    .hint { display: none; margin: 0.85rem 0; }
-    .hint.visible { display: block; }
+
+    .cipher {
+      overflow-x: auto;
+      color: var(--yellow);
+      width: 100%;
+      margin: 0;
+    }
+
+    .hint {
+      display: none;
+      margin: 0.85rem 0;
+    }
+
+    .hint.visible {
+      display: block;
+    }
 
     .flag-form {
       border-top: 1px solid var(--line);
-      margin-top: 1.2rem;
+      margin-top: auto;
       padding-top: 1rem;
       display: grid;
       gap: 0.65rem;
     }
-    .flag-form label { font-weight: 900; }
+
+    .flag-form label {
+      font-weight: 900;
+    }
+
     .flag-form input {
       width: 100%;
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -287,53 +459,20 @@
       padding: 0.9rem 1rem;
       font-family: "JetBrains Mono", monospace;
     }
-    .result { min-height: 1.5rem; font-weight: 900; margin: 0; }
-    .result.success { color: var(--yellow); }
-    .result.error { color: var(--red); }
 
-    .packet-viewer {
-      width: 100%;
-      display: grid;
-      gap: 0.75rem;
-      font-family: "JetBrains Mono", monospace;
-      text-align: left;
-    }
-    .pcap-file {
-      text-align: center;
-      color: var(--yellow);
+    .result {
+      min-height: 1.5rem;
       font-weight: 900;
-      border: 1px dashed var(--line);
-      border-radius: 16px;
-      padding: 0.9rem;
-      background: rgba(255, 210, 31, 0.07);
+      margin: 0;
     }
-    .packet-table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 14px;
-      font-size: 0.76rem;
+
+    .result.success {
+      color: var(--yellow);
     }
-    .packet-table th, .packet-table td {
-      border-bottom: 1px solid rgba(255, 210, 31, 0.16);
-      padding: 0.55rem;
-      vertical-align: top;
+
+    .result.error {
+      color: var(--red);
     }
-    .packet-table th { color: var(--yellow); }
-    .packet-table tr { cursor: pointer; }
-    .packet-table tr:hover { background: rgba(255, 210, 31, 0.08); }
-    .packet-details {
-      min-height: 115px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 0.75rem;
-      background: rgba(20, 5, 0, 0.55);
-      color: #fff1c1;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      font-size: 0.75rem;
-    }
-    .pcap-actions { display: flex; justify-content: center; }
 
     .join-section {
       max-width: 1320px;
@@ -341,12 +480,14 @@
       border-radius: 28px;
       padding: 2rem;
     }
+
     .social-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1.25rem;
       margin-top: 2rem;
     }
+
     .social-card {
       border: 1px solid var(--line);
       border-radius: 22px;
@@ -357,6 +498,7 @@
       text-align: center;
       gap: 1rem;
     }
+
     .social-qr-img {
       width: min(320px, 100%);
       aspect-ratio: 1 / 1;
@@ -366,6 +508,7 @@
       padding: 0.65rem;
       border: 2px solid rgba(255, 210, 31, 0.55);
     }
+
     .handle-box {
       width: min(420px, 100%);
       font-family: "JetBrains Mono", monospace;
@@ -385,25 +528,52 @@
       border-top: 1px solid var(--line);
     }
 
-    @media (max-width: 1000px) {
-      .hero, .challenge-layout, .social-grid { grid-template-columns: 1fr; }
-      .terminal-card { justify-self: stretch; max-width: none; }
-      .stats { grid-template-columns: 1fr; }
+    @media (max-width: 1050px) {
+      .hero,
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-card {
+        justify-self: stretch;
+        max-width: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
     }
+
     @media (max-width: 560px) {
-      .nav { align-items: flex-start; flex-direction: column; }
-      .hero { padding-top: 4rem; }
-      h1 { font-size: 3.2rem; }
-      .challenge-media { min-height: auto; }
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="noise"></div>
 
   <header class="site-header">
     <nav class="nav">
-      <a class="logo" href="#top" aria-label="Cybersecurity Club home"><span class="logo-mark">0x</span>CyberClub</a>
+      <a class="logo" href="#top" aria-label="Cybersecurity Club home">
+        <span class="logo-mark">0x</span>CyberClub
+      </a>
+
       <div class="nav-links">
         <a href="#challenges">CTF Problems</a>
         <a href="#join">Join</a>
@@ -417,7 +587,11 @@
       <div class="hero-copy">
         <p class="eyebrow">Club Rush • Capture the Flag • Beginner Friendly</p>
         <h1>Hack your way into the Cybersecurity Club.</h1>
-        <p class="hero-text">Stop by our table, solve a mini CTF, meet the team, and learn how to build real skills in ethical hacking, digital forensics, cryptography, and cyber defense.</p>
+        <p class="hero-text">
+          Stop by our table, solve a mini CTF, meet the team, and learn how to build real skills in ethical hacking,
+          digital forensics, cryptography, and cyber defense.
+        </p>
+
         <div class="hero-actions">
           <a class="button primary" href="#challenges">Start the CTF</a>
           <a class="button secondary" href="#join">Join the Club</a>
@@ -426,7 +600,10 @@
       </div>
 
       <div class="terminal-card" aria-label="terminal preview">
-        <div class="terminal-top"><span></span><span></span><span></span></div>
+        <div class="terminal-top">
+          <span></span><span></span><span></span>
+        </div>
+
         <div class="terminal-body">
           <p><span class="prompt">guest@clubrush:~$</span> ./join_cyberclub</p>
           <p class="green">Scanning curiosity... found.</p>
@@ -438,9 +615,20 @@
     </section>
 
     <section class="stats" aria-label="club highlights">
-      <article><strong>Workshops</strong><span>Linux, OSINT, web security, reverse engineering</span></article>
-      <article><strong>Competitions</strong><span>CTFs, cyber games, team practice nights</span></article>
-      <article><strong>No Experience Needed</strong><span>Bring curiosity. We will teach the tools.</span></article>
+      <article>
+        <strong>Workshops</strong>
+        <span>Linux, OSINT, web security, reverse engineering</span>
+      </article>
+
+      <article>
+        <strong>Competitions</strong>
+        <span>CTFs, cyber games, team practice nights</span>
+      </article>
+
+      <article>
+        <strong>No Experience Needed</strong>
+        <span>Bring curiosity. We will teach the tools.</span>
+      </article>
     </section>
 
     <section id="challenges" class="section">
@@ -452,87 +640,103 @@
 
       <div class="challenge-grid">
         <article class="challenge-card steg">
-          <div class="challenge-layout">
-            <div class="challenge-media">
-              <div>
-                <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
-                <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
-              </div>
-            </div>
-            <div class="challenge-body">
-              <div class="card-icon">🖼️</div>
-              <p class="tag">Steganography</p>
-              <h3>Hidden in Plain Sight</h3>
-              <p>Our mascot posted a suspicious image with the caption: <em>“Sometimes the message is not what you see, but what you inspect.”</em></p>
-              <div class="clue-box"><strong>Starter clue:</strong> Inspect the downloaded image with metadata tools or strings.</div>
-              <button class="hint-button" data-hint="steg">Show hint</button>
-              <p class="hint" id="hint-steg">Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.</p>
-              <form class="flag-form" data-answer="FLAG{hidden_in_plain_sight}">
-                <label for="steg-flag">Flag</label>
-                <input id="steg-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-                <button type="submit">Submit</button>
-                <p class="result" aria-live="polite"></p>
-              </form>
+          <div class="challenge-top">
+            <div>
+              <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
+              <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
             </div>
           </div>
+
+          <div class="card-icon">🖼️</div>
+          <p class="tag">Steganography</p>
+          <h3>Hidden in Plain Sight</h3>
+
+          <p>
+            Our mascot posted a suspicious image with the caption:
+            <em>“Sometimes the message is not what you see, but what you inspect.”</em>
+          </p>
+
+          <div class="clue-box">
+            <strong>Starter clue:</strong> Inspect the downloaded image with metadata tools or strings.
+          </div>
+
+          <button class="hint-button" data-hint="steg">Show hint</button>
+          <p class="hint" id="hint-steg">
+            Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.
+          </p>
+
+          <form class="flag-form" data-answer="FLAG{hidden_in_plain_sight}">
+            <label for="steg-flag">Flag</label>
+            <input id="steg-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
         </article>
 
         <article class="challenge-card crypto">
-          <div class="challenge-layout">
-            <div class="challenge-media">
-              <pre class="cipher">IODJ{fuhdwh_wkh_ixwxuh}</pre>
-            </div>
-            <div class="challenge-body">
-              <div class="card-icon">🔐</div>
-              <p class="tag">Cryptography</p>
-              <h3>Shift Happens</h3>
-              <p>One of our officers left an encoded note on the whiteboard. The alphabet moved, but not very far.</p>
-              <div class="clue-box"><strong>Starter clue:</strong> This is a Caesar shift.</div>
-              <button class="hint-button" data-hint="crypto">Show hint</button>
-              <p class="hint" id="hint-crypto">Shift each letter backward by 3.</p>
-              <form class="flag-form" data-answer="FLAG{create_the_future}">
-                <label for="crypto-flag">Flag</label>
-                <input id="crypto-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-                <button type="submit">Submit</button>
-                <p class="result" aria-live="polite"></p>
-              </form>
-            </div>
+          <div class="challenge-top">
+            <pre class="cipher">IODJ{fuhdwh_wkh_ixwxuh}</pre>
           </div>
+
+          <div class="card-icon">🔐</div>
+          <p class="tag">Cryptography</p>
+          <h3>Shift Happens</h3>
+
+          <p>
+            One of our officers left an encoded note on the whiteboard.
+            The alphabet moved, but not very far.
+          </p>
+
+          <div class="clue-box">
+            <strong>Starter clue:</strong> This is a Caesar shift.
+          </div>
+
+          <button class="hint-button" data-hint="crypto">Show hint</button>
+          <p class="hint" id="hint-crypto">
+            Shift each letter backward by 3.
+          </p>
+
+          <form class="flag-form" data-answer="FLAG{create_the_future}">
+            <label for="crypto-flag">Flag</label>
+            <input id="crypto-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
         </article>
 
         <article class="challenge-card forensics">
-          <div class="challenge-layout">
-            <div class="challenge-media">
-              <div class="packet-viewer">
-                <div class="pcap-file">packet-panic.pcap<br><span>Mock HTTP capture</span></div>
-                <table class="packet-table" aria-label="packet preview table">
-                  <thead><tr><th>No.</th><th>Source</th><th>Destination</th><th>Protocol</th></tr></thead>
-                  <tbody>
-                    <tr data-packet="0"><td>1</td><td>192.168.1.30</td><td>10.0.0.5</td><td>HTTP</td></tr>
-                    <tr data-packet="1"><td>2</td><td>192.168.1.42</td><td>10.0.0.5</td><td>HTTP</td></tr>
-                    <tr data-packet="2"><td>3</td><td>192.168.1.42</td><td>10.0.0.5</td><td>HTTP</td></tr>
-                  </tbody>
-                </table>
-                <pre class="packet-details" id="packet-details">Click a packet row to preview the evidence.</pre>
-                <div class="pcap-actions"><a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a></div>
-              </div>
-            </div>
-            <div class="challenge-body">
-              <div class="card-icon">🧪</div>
-              <p class="tag">Forensics</p>
-              <h3>Packet Panic</h3>
-              <p>A mystery user visited the club website and sent a secret through the network. Recover it from the evidence file.</p>
-              <div class="clue-box"><strong>Starter clue:</strong> Filter for HTTP traffic or search packet bytes for <code>FLAG{</code>.</div>
-              <button class="hint-button" data-hint="forensics">Show hint</button>
-              <p class="hint" id="hint-forensics">Open the capture in Wireshark and inspect the HTTP headers. Look for <code>X-Secret-Flag</code>.</p>
-              <form class="flag-form" data-answer="FLAG{follow_the_packets}">
-                <label for="forensics-flag">Flag</label>
-                <input id="forensics-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-                <button type="submit">Submit</button>
-                <p class="result" aria-live="polite"></p>
-              </form>
+          <div class="challenge-top">
+            <div class="pcap-box">
+              <div class="pcap-icon">📦</div>
+              <div class="pcap-name">packet-panic.pcap</div>
+              <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
             </div>
           </div>
+
+          <div class="card-icon">🧪</div>
+          <p class="tag">Forensics</p>
+          <h3>Packet Panic</h3>
+
+          <p>
+            A mystery user visited the club website and sent a secret through the network.
+            Recover it from the packet capture.
+          </p>
+
+          <div class="clue-box">
+            <strong>Starter clue:</strong> Open the PCAP in Wireshark and look through the HTTP traffic.
+          </div>
+
+          <button class="hint-button" data-hint="forensics">Show hint</button>
+          <p class="hint" id="hint-forensics">
+            Try filtering for <code>http</code>, or search packet bytes for <code>FLAG{</code>.
+          </p>
+
+          <form class="flag-form" data-answer="FLAG{follow_the_packets}">
+            <label for="forensics-flag">Flag</label>
+            <input id="forensics-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
         </article>
       </div>
     </section>
@@ -541,46 +745,47 @@
       <div>
         <p class="eyebrow">Join Us</p>
         <h2>Ready to learn cybersecurity?</h2>
-        <p>Scan a QR code, join the community, and get updates for meetings, workshops, competitions, and beginner resources.</p>
+        <p>
+          Scan a QR code, join the community, and get updates for meetings, workshops, competitions, and beginner resources.
+        </p>
       </div>
 
       <div id="socials" class="social-grid" aria-label="Discord and Instagram links">
         <article class="social-card">
           <h3>Join our Discord</h3>
           <p>Get meeting reminders, workshop resources, CTF announcements, and beginner help from club members.</p>
+
           <img class="social-qr-img" src="assets/CyberClubDiscord_QRCode.jpg" alt="CyberClub Discord QR code" />
-          <a class="button primary" href="https://discord.com/invite/XKwV27Vqtg" target="_blank" rel="noopener">💬 Join Discord</a>
+
+          <a class="button primary" href="https://discord.com/invite/XKwV27Vqtg" target="_blank" rel="noopener">
+            💬 Join Discord
+          </a>
+
           <div class="handle-box">discord.com/invite/XKwV27Vqtg</div>
         </article>
 
         <article class="social-card">
           <h3>Follow us on Instagram</h3>
           <p>See event flyers, club-rush updates, competition photos, and cybersecurity tips throughout the semester.</p>
+
           <img class="social-qr-img" src="assets/CyberClubInstagram_QRCode.jpg" alt="CyberClub Instagram QR code" />
-          <a class="button primary" href="https://www.instagram.com/cyberclubcsustan/" target="_blank" rel="noopener">📸 Follow Instagram</a>
+
+          <a class="button primary" href="https://www.instagram.com/cyberclubcsustan/" target="_blank" rel="noopener">
+            📸 Follow Instagram
+          </a>
+
           <div class="handle-box">@cyberclubcsustan</div>
         </article>
       </div>
     </section>
   </main>
 
-  <footer><p>Cybersecurity Club • Learn. Defend. Compete. Lead.</p></footer>
+  <footer>
+    <p>Cybersecurity Club • Learn. Defend. Compete. Lead.</p>
+  </footer>
 
   <script>
     const normalizeFlag = (value) => value.trim().toUpperCase();
-
-    const packetDetails = [
-      'Frame 1: 192.168.1.30 -> 10.0.0.5\nGET / HTTP/1.1\nHost: cyberclub.local\nUser-Agent: ClubRushBrowser',
-      'Frame 2: 192.168.1.42 -> 10.0.0.5\nGET /club-rush/checkin HTTP/1.1\nHost: cyberclub.local\nUser-Agent: PacketPanic/1.0\nX-Secret-Flag: FLAG{follow_the_packets}',
-      'Frame 3: 192.168.1.42 -> 10.0.0.5\nPOST /join HTTP/1.1\nHost: cyberclub.local\nContent-Type: application/x-www-form-urlencoded\nmember=anonymous'
-    ];
-
-    document.querySelectorAll('.packet-table tbody tr').forEach((row) => {
-      row.addEventListener('click', () => {
-        const index = Number(row.dataset.packet);
-        document.getElementById('packet-details').textContent = packetDetails[index];
-      });
-    });
 
     document.querySelectorAll('.hint-button').forEach((button) => {
       button.addEventListener('click', () => {
@@ -593,10 +798,12 @@
     document.querySelectorAll('.flag-form').forEach((form) => {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
+
         const input = form.querySelector('input');
         const result = form.querySelector('.result');
         const expected = normalizeFlag(form.dataset.answer);
         const submitted = normalizeFlag(input.value);
+
         result.classList.remove('success', 'error');
 
         if (!submitted) {
