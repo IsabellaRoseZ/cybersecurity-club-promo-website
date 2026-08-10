@@ -321,26 +321,16 @@
     .challenge-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
       align-items: stretch;
     }
 
     .challenge-card {
-      position: relative;
-      overflow: hidden;
       border-radius: 28px;
-      padding: 1.5rem;
-      display: grid;
-      gap: 1.15rem;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
       min-height: 100%;
-    }
-
-    .challenge-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 7px;
-      background: var(--yellow);
     }
 
     .challenge-card.steg {
@@ -351,41 +341,24 @@
       border-color: rgba(255, 107, 26, 0.48);
     }
 
-    .challenge-card.crypto::before {
-      background: var(--orange);
-    }
-
     .challenge-card.forensics {
       border-color: rgba(255, 47, 31, 0.48);
     }
 
-    .challenge-card.forensics::before {
-      background: var(--red);
+    .challenge-content {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.25rem;
+      align-items: center;
     }
 
     .challenge-main {
-      width: 100%;
-      text-align: left;
-      padding-left: 0.3rem;
-    }
-
-    .challenge-title-row {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.65rem;
+      min-width: 0;
     }
 
     .card-icon {
-      width: 3.1rem;
-      height: 3.1rem;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.65rem;
-      background: rgba(255, 210, 31, 0.10);
-      border: 1px solid var(--line);
+      font-size: 2.2rem;
+      margin-bottom: 0.55rem;
     }
 
     .tag {
@@ -393,11 +366,12 @@
       color: #260600 !important;
       background: var(--yellow);
       border-radius: 999px;
-      padding: 0.35rem 0.7rem;
+      padding: 0.3rem 0.6rem;
       font-weight: 900;
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
       width: fit-content;
     }
 
@@ -409,31 +383,20 @@
       background: var(--gold);
     }
 
-    .challenge-main h3 {
-      margin-bottom: 0.45rem;
-    }
-
-    .challenge-main p {
-      max-width: 900px;
-      margin-bottom: 0;
-    }
-
     .challenge-top {
-      width: 100%;
       border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at top left, rgba(255, 210, 31, 0.12), transparent 28rem),
-        rgba(70, 9, 0, 0.36);
+      background: rgba(70, 9, 0, 0.36);
       border-radius: 22px;
-      padding: 1.25rem;
+      padding: 1rem;
       display: grid;
       place-items: center;
       text-align: center;
+      min-height: 170px;
     }
 
     .stego-preview {
       max-width: 100%;
-      width: 240px;
+      width: 220px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 18px;
@@ -460,35 +423,31 @@
       overflow-wrap: anywhere;
     }
 
-    .cipher {
-      width: 100%;
-      margin: 0;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(20, 5, 0, 0.42);
-      color: var(--yellow);
-      padding: 1.1rem;
-      text-align: center;
-      font-size: clamp(1rem, 2.3vw, 1.45rem);
-      line-height: 1.55;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      overflow: visible;
-    }
-
+    .cipher,
     .clue-box {
       border-radius: 16px;
       border: 1px solid var(--line);
       background: rgba(70, 9, 0, 0.36);
-      padding: 0.95rem 1rem;
+      padding: 0.9rem;
+      margin: 1rem 0;
       color: var(--text);
+    }
+
+    .cipher {
+      color: var(--yellow);
+      width: 100%;
+      margin: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      overflow-x: visible;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
     .hint {
       display: none;
-      margin: 0;
-      color: var(--muted);
+      margin: 0.85rem 0;
     }
 
     .hint.visible {
@@ -497,7 +456,7 @@
 
     .flag-form {
       border-top: 1px solid var(--line);
-      margin-top: 0.2rem;
+      margin-top: 1rem;
       padding-top: 1rem;
       display: grid;
       gap: 0.65rem;
@@ -587,7 +546,8 @@
 
     @media (max-width: 1050px) {
       .hero,
-      .social-grid {
+      .social-grid,
+      .challenge-content {
         grid-template-columns: 1fr;
       }
 
@@ -613,14 +573,6 @@
 
       h1 {
         font-size: 3rem;
-      }
-
-      .challenge-card {
-        padding: 1.25rem;
-      }
-
-      .challenge-title-row {
-        gap: 0.65rem;
       }
     }
   </style>
@@ -701,121 +653,118 @@
 
       <div class="challenge-grid">
         <article class="challenge-card steg">
-          <div class="challenge-main">
-            <div class="challenge-title-row">
+          <div class="challenge-content">
+            <div class="challenge-top">
+              <div>
+                <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
+                <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
+              </div>
+            </div>
+
+            <div class="challenge-main">
               <div class="card-icon">🖼️</div>
               <p class="tag">Steganography</p>
+              <h3>Hidden in Plain Sight</h3>
+
+              <p>
+                Our mascot posted a suspicious image with the caption:
+                <em>“Sometimes the message is not what you see, but what you inspect.”</em>
+              </p>
+
+              <div class="clue-box">
+                <strong>Starter clue:</strong> Inspect the downloaded image with metadata tools or strings.
+              </div>
+
+              <button class="hint-button" data-hint="steg">Show hint</button>
+
+              <p class="hint" id="hint-steg">
+                Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.
+              </p>
+
+              <form class="flag-form" data-answer="FLAG{the_future_of_cyber}">
+                <label for="steg-flag">Flag</label>
+                <input id="steg-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+                <button type="submit">Submit</button>
+                <p class="result" aria-live="polite"></p>
+              </form>
             </div>
-
-            <h3>Hidden in Plain Sight</h3>
-
-            <p>
-              Our mascot posted a suspicious image with the caption:
-              <em>“Sometimes the message is not what you see, but what you inspect.”</em>
-            </p>
           </div>
-
-          <div class="challenge-top">
-            <div>
-              <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
-              <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
-            </div>
-          </div>
-
-          <div class="clue-box">
-            <strong>Starter clue:</strong> Inspect the downloaded image with metadata tools or strings.
-          </div>
-
-          <button class="hint-button" data-hint="steg">Show hint</button>
-
-          <p class="hint" id="hint-steg">
-            Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.
-          </p>
-
-          <form class="flag-form" data-answer="FLAG{the_future_of_cyber}">
-            <label for="steg-flag">Flag</label>
-            <input id="steg-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
         </article>
 
         <article class="challenge-card crypto">
-          <div class="challenge-main">
-            <div class="challenge-title-row">
-              <div class="card-icon">🔐</div>
-              <p class="tag">Cryptography</p>
+          <div class="challenge-content">
+            <div class="challenge-top">
+              <pre class="cipher">IODJ{brxu_mrxuqhb_ehjlqv_qrz}</pre>
             </div>
 
-            <h3>Shift Happens</h3>
+            <div class="challenge-main">
+              <div class="card-icon">🔐</div>
+              <p class="tag">Cryptography</p>
+              <h3>Shift Happens</h3>
 
-            <p>
-              One of our officers left an encoded note on the whiteboard.
-              The alphabet moved, but not very far.
-            </p>
+              <p>
+                One of our officers left an encoded note on the whiteboard.
+                The alphabet moved, but not very far.
+              </p>
+
+              <div class="clue-box">
+                <strong>Starter clue:</strong> This is a Caesar shift.
+              </div>
+
+              <button class="hint-button" data-hint="crypto">Show hint</button>
+
+              <p class="hint" id="hint-crypto">
+                Shift each letter backward by 3.
+              </p>
+
+              <form class="flag-form" data-answer="FLAG{your_journey_begins_now}">
+                <label for="crypto-flag">Flag</label>
+                <input id="crypto-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+                <button type="submit">Submit</button>
+                <p class="result" aria-live="polite"></p>
+              </form>
+            </div>
           </div>
-
-          <div class="challenge-top">
-            <pre class="cipher">IODJ{brxu_mrxuqhb_ehjlqv_qrz}</pre>
-          </div>
-
-          <div class="clue-box">
-            <strong>Starter clue:</strong> This is a Caesar shift.
-          </div>
-
-          <button class="hint-button" data-hint="crypto">Show hint</button>
-
-          <p class="hint" id="hint-crypto">
-            Shift each letter backward by 3.
-          </p>
-
-          <form class="flag-form" data-answer="FLAG{your_journey_begins_now}">
-            <label for="crypto-flag">Flag</label>
-            <input id="crypto-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
         </article>
 
         <article class="challenge-card forensics">
-          <div class="challenge-main">
-            <div class="challenge-title-row">
+          <div class="challenge-content">
+            <div class="challenge-top">
+              <div class="pcap-box">
+                <div class="pcap-icon">📦</div>
+                <div class="pcap-name">packet-panic.pcap</div>
+                <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
+              </div>
+            </div>
+
+            <div class="challenge-main">
               <div class="card-icon">🧪</div>
               <p class="tag">Forensics</p>
+              <h3>Packet Panic</h3>
+
+              <p>
+                A mystery user visited the club website and sent a secret through the network.
+                Recover it from the packet capture.
+              </p>
+
+              <div class="clue-box">
+                <strong>Starter clue:</strong> Open the PCAP in Wireshark and look through the HTTP traffic.
+              </div>
+
+              <button class="hint-button" data-hint="forensics">Show hint</button>
+
+              <p class="hint" id="hint-forensics">
+                Try filtering for <code>http</code>, or search packet bytes for <code>FLAG{</code>.
+              </p>
+
+              <form class="flag-form" data-answer="FLAG{follow_the_packets}">
+                <label for="forensics-flag">Flag</label>
+                <input id="forensics-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
+                <button type="submit">Submit</button>
+                <p class="result" aria-live="polite"></p>
+              </form>
             </div>
-
-            <h3>Packet Panic</h3>
-
-            <p>
-              A mystery user visited the club website and sent a secret through the network.
-              Recover it from the packet capture.
-            </p>
           </div>
-
-          <div class="challenge-top">
-            <div class="pcap-box">
-              <div class="pcap-icon">📦</div>
-              <div class="pcap-name">packet-panic.pcap</div>
-              <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
-            </div>
-          </div>
-
-          <div class="clue-box">
-            <strong>Starter clue:</strong> Open the PCAP in Wireshark and look through the HTTP traffic.
-          </div>
-
-          <button class="hint-button" data-hint="forensics">Show hint</button>
-
-          <p class="hint" id="hint-forensics">
-            Try filtering for <code>http</code>, or search packet bytes for <code>FLAG{</code>.
-          </p>
-
-          <form class="flag-form" data-answer="FLAG{follow_the_packets}">
-            <label for="forensics-flag">Flag</label>
-            <input id="forensics-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
         </article>
       </div>
     </section>
