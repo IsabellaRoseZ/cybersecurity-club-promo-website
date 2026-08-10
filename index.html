@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybersecurity Club Rush</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --bg: #140500;
+  --panel: rgba(45, 10, 4, 0.88);
+  --panel-strong: #3a0c05;
+  --text: #fff8df;
+  --muted: #ffd993;
+  --red: #ff2f1f;
+  --deep-red: #8f130b;
+  --yellow: #ffd21f;
+  --gold: #ff9f1c;
+  --orange: #ff6b1a;
+  --line: rgba(255, 210, 31, 0.28);
+  --shadow: 0 24px 80px rgba(74, 9, 0, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255, 210, 31, 0.22), transparent 32rem),
+    radial-gradient(circle at 80% 10%, rgba(255, 47, 31, 0.24), transparent 30rem),
+    linear-gradient(135deg, #170500 0%, #3a0c05 48%, #100200 100%);
+  min-height: 100vh;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.08) 3px);
+  z-index: 0;
+}
+
+.site-header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  background: rgba(24, 4, 0, 0.78);
+  position: sticky;
+  top: 0;
+}
+
+.nav {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.25rem;
+}
+
+.logo-mark {
+  color: var(--yellow);
+  font-family: "JetBrains Mono", monospace;
+  margin-right: 0.2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-links a:hover {
+  color: var(--yellow);
+}
+
+.hero {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 6.5rem 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 520px);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-copy {
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  color: var(--yellow);
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  margin-bottom: 1.3rem;
+  max-width: 760px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.06em;
+  margin-bottom: 0.8rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+  margin-bottom: 0.75rem;
+}
+
+.hero-text, .section-heading p, .join-section p, .challenge-card p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.hero-text {
+  font-size: 1.12rem;
+  max-width: 680px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1.6rem;
+}
+
+.button, .flag-form button, .hint-button {
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.button:hover, .flag-form button:hover, .hint-button:hover {
+  transform: translateY(-2px);
+}
+
+.primary, .flag-form button {
+  background: linear-gradient(135deg, var(--yellow), var(--orange));
+  color: #260600;
+  box-shadow: 0 12px 30px rgba(255, 210, 31, 0.28);
+}
+
+.secondary, .hint-button {
+  color: var(--text);
+  background: rgba(255, 210, 31, 0.08);
+  border: 1px solid var(--line);
+}
+
+.terminal-card, .challenge-card, .stats article, .join-section {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.terminal-card {
+  border-radius: 24px;
+  overflow: hidden;
+  transform: rotate(1.4deg);
+  width: 100%;
+  max-width: 520px;
+  justify-self: end;
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-top {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.9rem 1rem;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.terminal-top span {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.terminal-top span:nth-child(2) { background: var(--yellow); }
+.terminal-top span:nth-child(3) { background: var(--orange); }
+
+.terminal-body {
+  padding: 1.3rem;
+  min-height: 290px;
+  font-family: "JetBrains Mono", monospace;
+  color: #fff1c1;
+}
+
+.terminal-body p {
+  margin-bottom: 0.9rem;
+}
+
+.prompt, .green {
+  color: var(--yellow);
+}
+
+.cursor {
+  color: var(--yellow);
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.stats {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stats article {
+  border-radius: 18px;
+  padding: 1.2rem;
+}
+
+.stats strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--yellow);
+}
+
+.stats span {
+  color: var(--muted);
+}
+
+.section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+}
+
+.section-heading {
+  max-width: 740px;
+  margin-bottom: 2rem;
+}
+
+code, pre {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.challenge-card {
+  border-radius: 24px;
+  padding: 1.25rem;
+  min-height: 100%;
+}
+
+.challenge-card.steg { border-color: rgba(255, 210, 31, 0.48); }
+.challenge-card.crypto { border-color: rgba(255, 107, 26, 0.48); }
+.challenge-card.forensics { border-color: rgba(255, 47, 31, 0.48); }
+
+.card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.tag {
+  display: inline-flex;
+  color: #260600 !important;
+  background: var(--yellow);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  font-weight: 900;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.crypto .tag { background: var(--orange); }
+.forensics .tag { background: var(--gold); color: #fff !important; }
+
+.clue-box, .cipher {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(70, 9, 0, 0.36);
+  padding: 0.9rem;
+  margin: 1rem 0;
+  color: var(--text);
+}
+
+.cipher {
+  overflow-x: auto;
+  color: var(--yellow);
+}
+
+.hint {
+  display: none;
+  margin: 0.85rem 0;
+}
+
+.hint.visible {
+  display: block;
+}
+
+.flag-form {
+  border-top: 1px solid var(--line);
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.flag-form label {
+  font-weight: 800;
+}
+
+.flag-form input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(70, 9, 0, 0.40);
+  color: var(--text);
+  padding: 0.9rem 1rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.result {
+  min-height: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.result.success { color: var(--yellow); }
+.result.error { color: var(--red); }
+
+.join-section {
+  max-width: 1180px;
+  margin: 2rem auto 4rem;
+  border-radius: 28px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.qr-card {
+  text-align: center;
+  color: var(--muted);
+}
+
+.social-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-card {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 1.15rem;
+  background: rgba(255, 210, 31, 0.06);
+}
+
+.social-card h3 {
+  margin-bottom: 0.45rem;
+}
+
+.social-card p {
+  margin-bottom: 1rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #260600;
+  background: linear-gradient(135deg, var(--yellow), var(--orange));
+  border-radius: 999px;
+  padding: 0.78rem 1rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.handle-box {
+  margin-top: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--yellow);
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 0.75rem;
+  background: rgba(70, 9, 0, 0.32);
+  overflow-wrap: anywhere;
+}
+
+.qr-placeholder {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 0.8rem;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--yellow);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 2rem;
+  border: 2px dashed var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
+.stego-asset {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.85rem;
+  margin: 1rem 0;
+  background: rgba(70, 9, 0, 0.32);
+}
+
+.stego-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 210, 31, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 0.85rem;
+}
+
+.file-actions {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.file-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.social-qr {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.social-qr-box {
+  width: 118px;
+  height: 118px;
+  border-radius: 16px;
+  border: 2px dashed var(--line);
+  background:
+    linear-gradient(90deg, rgba(255, 210, 31, 0.18) 50%, transparent 50%) 0 0 / 18px 18px,
+    linear-gradient(rgba(255, 210, 31, 0.12) 50%, transparent 50%) 0 0 / 18px 18px,
+    rgba(255, 255, 255, 0.04);
+  display: grid;
+  place-items: center;
+  color: var(--yellow);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 900;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.qr-caption {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+footer {
+  color: var(--muted);
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .hero, .challenge-grid, .join-section, .social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-card {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-card {
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hero {
+    padding-top: 4rem;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  .social-qr {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="#top" aria-label="Cybersecurity Club home">
+        <span class="logo-mark">0x</span>CyberClub
+      </a>
+      <div class="nav-links">
+        <a href="#challenges">CTF Problems</a>
+        <a href="#join">Join</a>
+        <a href="#socials">Discord & Instagram</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Club Rush • Capture the Flag • Beginner Friendly</p>
+        <h1>Hack your way into the Cybersecurity Club.</h1>
+        <p class="hero-text">
+          Stop by our table, solve a mini CTF, meet the team, and learn how to build real skills in ethical hacking, digital forensics, cryptography, and cyber defense.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#challenges">Start the CTF</a>
+          <a class="button secondary" href="#join">Join the Club</a>
+          <a class="button secondary" href="#socials">Discord + Instagram</a>
+        </div>
+      </div>
+
+      <div class="terminal-card" aria-label="terminal preview">
+        <div class="terminal-top">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">guest@clubrush:~$</span> ./join_cyberclub</p>
+          <p class="green">Scanning curiosity... found.</p>
+          <p class="green">Loading CTF challenges... ready.</p>
+          <p><span class="prompt">flag format:</span> CYBER{example_flag}</p>
+          <p class="cursor">_</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="club highlights">
+      <article>
+        <strong>Workshops</strong>
+        <span>Linux, OSINT, web security, reverse engineering</span>
+      </article>
+      <article>
+        <strong>Competitions</strong>
+        <span>CTFs, cyber games, team practice nights</span>
+      </article>
+      <article>
+        <strong>No Experience Needed</strong>
+        <span>Bring curiosity. We will teach the tools.</span>
+      </article>
+    </section>
+
+    <section id="challenges" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Mini CTF</p>
+        <h2>Try these 3 club-rush challenges</h2>
+        <p>Enter the flag for each challenge. Enter the flags at the club-rush table and show your correct solves to an officer.</p>
+      </div>
+
+      <div class="challenge-grid">
+        <article class="challenge-card steg">
+          <div class="card-icon">🖼️</div>
+          <p class="tag">Steganography</p>
+          <h3>Hidden in Plain Sight</h3>
+          <p>
+            Our mascot posted a suspicious image with the caption: <em>“Sometimes the message is not what you see, but what you inspect.”</em>
+          </p>
+          <div class="stego-asset">
+            <img class="stego-preview" src="assets/stego-challenge.png" alt="Steganography challenge preview image" />
+            <div class="file-actions">
+              <a class="button primary" href="assets/stego-challenge.png" download>Download Stego Image</a>
+              <p class="file-note">Replace this image with your final challenge photo when ready.</p>
+            </div>
+          </div>
+          <div class="clue-box">
+            <strong>Starter clue:</strong> Download the image and inspect its metadata or strings.
+          </div>
+          <button class="hint-button" data-hint="steg">Show hint</button>
+          <p class="hint" id="hint-steg">Try tools like <code>exiftool</code>, <code>strings</code>, or checking the least obvious text inside the file.</p>
+          <form class="flag-form" data-answer="CYBER{hidden_in_plain_sight}">
+            <label for="steg-flag">Flag</label>
+            <input id="steg-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="challenge-card crypto">
+          <div class="card-icon">🔐</div>
+          <p class="tag">Cryptography</p>
+          <h3>Shift Happens</h3>
+          <p>
+            One of our officers left this encoded note on the whiteboard:
+          </p>
+          <pre class="cipher">FLOHU{fuhdph_wkh_ixwxuh}</pre>
+          <div class="clue-box">
+            <strong>Starter clue:</strong> The alphabet moved, but not very far.
+          </div>
+          <button class="hint-button" data-hint="crypto">Show hint</button>
+          <p class="hint" id="hint-crypto">This is a Caesar shift. Try shifting each letter backward by 3.</p>
+          <form class="flag-form" data-answer="CYBER{create_the_future}">
+            <label for="crypto-flag">Flag</label>
+            <input id="crypto-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="challenge-card forensics">
+          <div class="card-icon">🧪</div>
+          <p class="tag">Forensics</p>
+          <h3>Packet Panic</h3>
+          <p>
+            A mystery user visited the club website and sent a secret through the network. Your job is to recover it from the evidence file.
+          </p>
+          <div class="clue-box">
+            <strong>Starter clue:</strong> Ask for the PCAP at the table and filter for HTTP traffic.
+          </div>
+          <button class="hint-button" data-hint="forensics">Show hint</button>
+          <p class="hint" id="hint-forensics">Open the capture in Wireshark. Try filters like <code>http</code> or search packet bytes for <code>CYBER{</code>.</p>
+          <form class="flag-form" data-answer="CYBER{follow_the_packets}">
+            <label for="forensics-flag">Flag</label>
+            <input id="forensics-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+            <button type="submit">Submit</button>
+            <p class="result" aria-live="polite"></p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <section id="join" class="join-section">
+      <div>
+        <p class="eyebrow">Join Us</p>
+        <h2>Ready to learn cybersecurity?</h2>
+        <p>
+          Visit our club-rush table, scan the QR code, and get added to our community for meetings, workshops, competitions, and beginner resources.
+        </p>
+      </div>
+      <div class="qr-card">
+        <div class="qr-placeholder">QR</div>
+        <p>Replace this box with your main signup QR code.</p>
+      </div>
+
+      <div id="socials" class="social-grid" aria-label="Discord and Instagram links">
+        <article class="social-card">
+          <h3>Join our Discord</h3>
+          <p>Get meeting reminders, workshop resources, CTF team announcements, and beginner help from club members.</p>
+          <div class="social-qr">
+            <div class="social-qr-box">Discord<br>QR</div>
+            <p class="qr-caption">Replace this box with your Discord invite QR code image.</p>
+          </div>
+          <a class="social-link" href="https://discord.gg/REPLACE_ME" target="_blank" rel="noopener">💬 Join Discord</a>
+          <div class="handle-box">discord.gg/REPLACE_ME</div>
+        </article>
+
+        <article class="social-card">
+          <h3>Follow us on Instagram</h3>
+          <p>See event flyers, club-rush updates, competition photos, and cybersecurity tips throughout the semester.</p>
+          <div class="social-qr">
+            <div class="social-qr-box">Instagram<br>QR</div>
+            <p class="qr-caption">Replace this box with your Instagram profile QR code image.</p>
+          </div>
+          <a class="social-link" href="https://instagram.com/REPLACE_ME" target="_blank" rel="noopener">📸 Follow Instagram</a>
+          <div class="handle-box">@REPLACE_ME</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Cybersecurity Club • Learn. Defend. Compete. Lead.</p>
+  </footer>
+
+  <script>
+const normalizeFlag = (value) => value.trim().toUpperCase();
+
+document.querySelectorAll('.hint-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const hint = document.getElementById(`hint-${button.dataset.hint}`);
+    hint.classList.toggle('visible');
+    button.textContent = hint.classList.contains('visible') ? 'Hide hint' : 'Show hint';
+  });
+});
+
+document.querySelectorAll('.flag-form').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = form.querySelector('input');
+    const result = form.querySelector('.result');
+    const expected = normalizeFlag(form.dataset.answer);
+    const submitted = normalizeFlag(input.value);
+
+    result.classList.remove('success', 'error');
+
+    if (!submitted) {
+      result.textContent = 'Enter a flag first.';
+      result.classList.add('error');
+      return;
+    }
+
+    if (submitted === expected) {
+      result.textContent = 'Correct! Show this to the club table for credit.';
+      result.classList.add('success');
+    } else {
+      result.textContent = 'Not quite. Check the clue and try again.';
+      result.classList.add('error');
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
