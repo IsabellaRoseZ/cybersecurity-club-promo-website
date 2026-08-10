@@ -345,18 +345,6 @@
       border-color: rgba(255, 47, 31, 0.48);
     }
 
-    .challenge-top {
-      border: 1px solid var(--line);
-      background: rgba(70, 9, 0, 0.36);
-      border-radius: 22px;
-      padding: 1rem;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      margin-bottom: 1rem;
-      min-height: 170px;
-    }
-
     .card-icon {
       font-size: 2.2rem;
       margin-bottom: 0.55rem;
@@ -373,6 +361,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 0.6rem;
+      width: fit-content;
     }
 
     .crypto .tag {
@@ -381,6 +370,18 @@
 
     .forensics .tag {
       background: var(--gold);
+    }
+
+    .challenge-top {
+      border: 1px solid var(--line);
+      background: rgba(70, 9, 0, 0.36);
+      border-radius: 22px;
+      padding: 1rem;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      margin: 1rem 0;
+      min-height: 150px;
     }
 
     .stego-preview {
@@ -640,13 +641,6 @@
 
       <div class="challenge-grid">
         <article class="challenge-card steg">
-          <div class="challenge-top">
-            <div>
-              <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
-              <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
-            </div>
-          </div>
-
           <div class="card-icon">🖼️</div>
           <p class="tag">Steganography</p>
           <h3>Hidden in Plain Sight</h3>
@@ -655,6 +649,13 @@
             Our mascot posted a suspicious image with the caption:
             <em>“Sometimes the message is not what you see, but what you inspect.”</em>
           </p>
+
+          <div class="challenge-top">
+            <div>
+              <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
+              <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
+            </div>
+          </div>
 
           <div class="clue-box">
             <strong>Starter clue:</strong> Inspect the downloaded image with metadata tools or strings.
@@ -665,7 +666,7 @@
             Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.
           </p>
 
-          <form class="flag-form" data-answer="FLAG{hidden_in_plain_sight}">
+          <form class="flag-form" data-answer="FLAG{the_future_of_cyber}">
             <label for="steg-flag">Flag</label>
             <input id="steg-flag" type="text" placeholder="FLAG{...}" autocomplete="off" />
             <button type="submit">Submit</button>
@@ -674,10 +675,6 @@
         </article>
 
         <article class="challenge-card crypto">
-          <div class="challenge-top">
-            <pre class="cipher">IODJ{fuhdwh_wkh_ixwxuh}</pre>
-          </div>
-
           <div class="card-icon">🔐</div>
           <p class="tag">Cryptography</p>
           <h3>Shift Happens</h3>
@@ -686,6 +683,10 @@
             One of our officers left an encoded note on the whiteboard.
             The alphabet moved, but not very far.
           </p>
+
+          <div class="challenge-top">
+            <pre class="cipher">IODJ{brxu_mrxuqhb_ehjlqv_qrz}</pre>
+          </div>
 
           <div class="clue-box">
             <strong>Starter clue:</strong> This is a Caesar shift.
@@ -705,14 +706,6 @@
         </article>
 
         <article class="challenge-card forensics">
-          <div class="challenge-top">
-            <div class="pcap-box">
-              <div class="pcap-icon">📦</div>
-              <div class="pcap-name">packet-panic.pcap</div>
-              <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
-            </div>
-          </div>
-
           <div class="card-icon">🧪</div>
           <p class="tag">Forensics</p>
           <h3>Packet Panic</h3>
@@ -721,6 +714,14 @@
             A mystery user visited the club website and sent a secret through the network.
             Recover it from the packet capture.
           </p>
+
+          <div class="challenge-top">
+            <div class="pcap-box">
+              <div class="pcap-icon">📦</div>
+              <div class="pcap-name">packet-panic.pcap</div>
+              <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
+            </div>
+          </div>
 
           <div class="clue-box">
             <strong>Starter clue:</strong> Open the PCAP in Wireshark and look through the HTTP traffic.
