@@ -51,17 +51,20 @@ body {
   z-index: 0;
 }
 
-.site-header, main, footer {
-  position: relative;
-  z-index: 1;
-}
-
 .site-header {
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(18px);
-  background: rgba(24, 4, 0, 0.78);
   position: sticky;
   top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(24, 4, 0, 0.94);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+main, footer {
+  position: relative;
+  z-index: 1;
 }
 
 .nav {
@@ -277,6 +280,11 @@ h3 {
   color: var(--muted);
 }
 
+
+#challenges, #join, #socials {
+  scroll-margin-top: 96px;
+}
+
 .section {
   max-width: 1180px;
   margin: 0 auto;
@@ -388,9 +396,9 @@ code, pre {
   border-radius: 28px;
   padding: 2rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  align-items: center;
+  align-items: start;
 }
 
 .qr-card {
@@ -493,16 +501,16 @@ code, pre {
 
 .social-qr {
   display: grid;
-  grid-template-columns: 118px minmax(0, 1fr);
-  gap: 1rem;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 1.25rem;
   align-items: center;
   margin: 1rem 0;
 }
 
 .social-qr-box {
-  width: 118px;
-  height: 118px;
-  border-radius: 16px;
+  width: 180px;
+  height: 180px;
+  border-radius: 22px;
   border: 2px dashed var(--line);
   background:
     linear-gradient(90deg, rgba(255, 210, 31, 0.18) 50%, transparent 50%) 0 0 / 18px 18px,
@@ -565,6 +573,11 @@ footer {
 
   .social-qr {
     grid-template-columns: 1fr;
+  }
+
+  .social-qr-box {
+    width: min(100%, 220px);
+    height: 220px;
   }
 }
 
@@ -716,11 +729,6 @@ footer {
           Visit our club-rush table, scan the QR code, and get added to our community for meetings, workshops, competitions, and beginner resources.
         </p>
       </div>
-      <div class="qr-card">
-        <div class="qr-placeholder">QR</div>
-        <p>Replace this box with your main signup QR code.</p>
-      </div>
-
       <div id="socials" class="social-grid" aria-label="Discord and Instagram links">
         <article class="social-card">
           <h3>Join our Discord</h3>
