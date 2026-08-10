@@ -321,16 +321,26 @@
     .challenge-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 1.5rem;
       align-items: stretch;
     }
 
     .challenge-card {
+      position: relative;
+      overflow: hidden;
       border-radius: 28px;
-      padding: 1.35rem;
-      display: flex;
-      flex-direction: column;
+      padding: 1.5rem;
+      display: grid;
+      gap: 1.15rem;
       min-height: 100%;
+    }
+
+    .challenge-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--yellow);
     }
 
     .challenge-card.steg {
@@ -341,18 +351,41 @@
       border-color: rgba(255, 107, 26, 0.48);
     }
 
+    .challenge-card.crypto::before {
+      background: var(--orange);
+    }
+
     .challenge-card.forensics {
       border-color: rgba(255, 47, 31, 0.48);
+    }
+
+    .challenge-card.forensics::before {
+      background: var(--red);
     }
 
     .challenge-main {
       width: 100%;
       text-align: left;
+      padding-left: 0.3rem;
+    }
+
+    .challenge-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.65rem;
     }
 
     .card-icon {
-      font-size: 2.2rem;
-      margin-bottom: 0.55rem;
+      width: 3.1rem;
+      height: 3.1rem;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.65rem;
+      background: rgba(255, 210, 31, 0.10);
+      border: 1px solid var(--line);
     }
 
     .tag {
@@ -360,12 +393,11 @@
       color: #260600 !important;
       background: var(--yellow);
       border-radius: 999px;
-      padding: 0.3rem 0.6rem;
+      padding: 0.35rem 0.7rem;
       font-weight: 900;
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
       width: fit-content;
     }
 
@@ -377,21 +409,31 @@
       background: var(--gold);
     }
 
+    .challenge-main h3 {
+      margin-bottom: 0.45rem;
+    }
+
+    .challenge-main p {
+      max-width: 900px;
+      margin-bottom: 0;
+    }
+
     .challenge-top {
       width: 100%;
       border: 1px solid var(--line);
-      background: rgba(70, 9, 0, 0.36);
+      background:
+        radial-gradient(circle at top left, rgba(255, 210, 31, 0.12), transparent 28rem),
+        rgba(70, 9, 0, 0.36);
       border-radius: 22px;
-      padding: 1rem;
+      padding: 1.25rem;
       display: grid;
       place-items: center;
       text-align: center;
-      margin: 1rem 0;
     }
 
     .stego-preview {
       max-width: 100%;
-      width: 260px;
+      width: 240px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border-radius: 18px;
@@ -418,32 +460,35 @@
       overflow-wrap: anywhere;
     }
 
-    .cipher,
-    .clue-box {
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(70, 9, 0, 0.36);
-      padding: 0.9rem;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
     .cipher {
-      color: var(--yellow);
       width: 100%;
       margin: 0;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(20, 5, 0, 0.42);
+      color: var(--yellow);
+      padding: 1.1rem;
+      text-align: center;
+      font-size: clamp(1rem, 2.3vw, 1.45rem);
+      line-height: 1.55;
       white-space: normal;
       overflow-wrap: anywhere;
       word-break: break-word;
       overflow: visible;
-      text-align: left;
-      font-size: clamp(0.95rem, 2.5vw, 1.35rem);
-      line-height: 1.5;
+    }
+
+    .clue-box {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(70, 9, 0, 0.36);
+      padding: 0.95rem 1rem;
+      color: var(--text);
     }
 
     .hint {
       display: none;
-      margin: 0.85rem 0;
+      margin: 0;
+      color: var(--muted);
     }
 
     .hint.visible {
@@ -452,7 +497,7 @@
 
     .flag-form {
       border-top: 1px solid var(--line);
-      margin-top: 1rem;
+      margin-top: 0.2rem;
       padding-top: 1rem;
       display: grid;
       gap: 0.65rem;
@@ -569,6 +614,14 @@
       h1 {
         font-size: 3rem;
       }
+
+      .challenge-card {
+        padding: 1.25rem;
+      }
+
+      .challenge-title-row {
+        gap: 0.65rem;
+      }
     }
   </style>
 </head>
@@ -649,8 +702,11 @@
       <div class="challenge-grid">
         <article class="challenge-card steg">
           <div class="challenge-main">
-            <div class="card-icon">🖼️</div>
-            <p class="tag">Steganography</p>
+            <div class="challenge-title-row">
+              <div class="card-icon">🖼️</div>
+              <p class="tag">Steganography</p>
+            </div>
+
             <h3>Hidden in Plain Sight</h3>
 
             <p>
@@ -671,6 +727,7 @@
           </div>
 
           <button class="hint-button" data-hint="steg">Show hint</button>
+
           <p class="hint" id="hint-steg">
             Try <code>strings "Silly Goose.jpg"</code> and look for <code>FLAG{</code>.
           </p>
@@ -685,8 +742,11 @@
 
         <article class="challenge-card crypto">
           <div class="challenge-main">
-            <div class="card-icon">🔐</div>
-            <p class="tag">Cryptography</p>
+            <div class="challenge-title-row">
+              <div class="card-icon">🔐</div>
+              <p class="tag">Cryptography</p>
+            </div>
+
             <h3>Shift Happens</h3>
 
             <p>
@@ -704,6 +764,7 @@
           </div>
 
           <button class="hint-button" data-hint="crypto">Show hint</button>
+
           <p class="hint" id="hint-crypto">
             Shift each letter backward by 3.
           </p>
@@ -718,8 +779,11 @@
 
         <article class="challenge-card forensics">
           <div class="challenge-main">
-            <div class="card-icon">🧪</div>
-            <p class="tag">Forensics</p>
+            <div class="challenge-title-row">
+              <div class="card-icon">🧪</div>
+              <p class="tag">Forensics</p>
+            </div>
+
             <h3>Packet Panic</h3>
 
             <p>
@@ -741,6 +805,7 @@
           </div>
 
           <button class="hint-button" data-hint="forensics">Show hint</button>
+
           <p class="hint" id="hint-forensics">
             Try filtering for <code>http</code>, or search packet bytes for <code>FLAG{</code>.
           </p>
