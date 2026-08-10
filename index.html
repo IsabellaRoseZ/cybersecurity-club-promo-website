@@ -347,13 +347,14 @@
 
     .challenge-content {
       display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 1.25rem;
-      align-items: center;
+      grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: start;
     }
 
     .challenge-main {
       min-width: 0;
+      align-self: start;
     }
 
     .card-icon {
@@ -387,11 +388,12 @@
       border: 1px solid var(--line);
       background: rgba(70, 9, 0, 0.36);
       border-radius: 22px;
-      padding: 1rem;
+      padding: 1.15rem;
       display: grid;
       place-items: center;
       text-align: center;
-      min-height: 170px;
+      min-height: auto;
+      align-self: start;
     }
 
     .stego-preview {
@@ -437,12 +439,15 @@
       color: var(--yellow);
       width: 100%;
       margin: 0;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      overflow-x: visible;
+      white-space: nowrap;
+      overflow: visible;
       text-align: center;
-      font-size: 0.95rem;
+      font-size: clamp(0.78rem, 1.25vw, 1rem);
       line-height: 1.5;
+    }
+
+    .challenge-main .clue-box {
+      width: 100%;
     }
 
     .hint {
@@ -551,6 +556,12 @@
         grid-template-columns: 1fr;
       }
 
+      .cipher {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-size: 0.95rem;
+      }
+
       .terminal-card {
         justify-self: stretch;
         max-width: none;
@@ -599,7 +610,7 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Club Rush • Capture the Flag • Beginner Friendly</p>
-        <h1>Hack your way into the Cybersecurity Club @ Stan State.</h1>
+        <h1>Hack your way into the Cybersecurity Club.</h1>
         <p class="hero-text">
           Stop by our table, solve a mini CTF, meet the team, and learn how to build real skills in ethical hacking,
           digital forensics, cryptography, and cyber defense.
