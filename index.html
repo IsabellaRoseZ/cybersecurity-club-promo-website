@@ -349,12 +349,12 @@
       display: grid;
       grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
       gap: 1.5rem;
-      align-items: start;
+      align-items: center;
     }
 
     .challenge-main {
       min-width: 0;
-      align-self: start;
+      align-self: center;
     }
 
     .card-icon {
@@ -393,7 +393,7 @@
       place-items: center;
       text-align: center;
       min-height: auto;
-      align-self: start;
+      align-self: center;
     }
 
     .stego-preview {
@@ -554,6 +554,11 @@
       .social-grid,
       .challenge-content {
         grid-template-columns: 1fr;
+      }
+
+      .challenge-main,
+      .challenge-top {
+        align-self: stretch;
       }
 
       .cipher {
