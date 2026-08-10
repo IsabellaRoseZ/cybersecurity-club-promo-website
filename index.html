@@ -302,14 +302,26 @@ code, pre {
 
 .challenge-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
 }
 
 .challenge-card {
   border-radius: 24px;
-  padding: 1.25rem;
+  padding: 1.4rem;
   min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(320px, 1.1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.challenge-copy {
+  min-width: 0;
+}
+
+.challenge-work {
+  min-width: 0;
 }
 
 .challenge-card.steg { border-color: rgba(255, 210, 31, 0.48); }
@@ -475,6 +487,7 @@ code, pre {
 }
 
 
+.challenge-asset,
 .stego-asset {
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -494,6 +507,20 @@ code, pre {
   margin-bottom: 0.85rem;
 }
 
+.pcap-preview {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 210, 31, 0.25);
+  background: rgba(70, 9, 0, 0.42);
+  color: var(--yellow);
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 0.85rem;
+}
+
 .file-actions {
   display: flex;
   gap: 0.65rem;
@@ -505,6 +532,10 @@ code, pre {
   color: var(--muted);
   font-size: 0.9rem;
   margin: 0;
+}
+
+.challenge-work .flag-form {
+  margin-top: 1rem;
 }
 
 .social-qr {
@@ -542,7 +573,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .hero, .challenge-grid, .join-section, .social-grid {
+  .hero, .challenge-grid, .join-section, .social-grid, .challenge-card {
     grid-template-columns: 1fr;
   }
 
@@ -655,71 +686,90 @@ footer {
 
       <div class="challenge-grid">
         <article class="challenge-card steg">
-          <div class="card-icon">🖼️</div>
-          <p class="tag">Steganography</p>
-          <h3>Hidden in Plain Sight</h3>
-          <p>
-            Our mascot posted a suspicious image with the caption: <em>“Sometimes the message is not what you see, but what you inspect.”</em>
-          </p>
-          <div class="stego-asset">
-            <img class="stego-preview" src="assets/stego-challenge.png" alt="Steganography challenge preview image" />
-            <div class="file-actions">
-              <a class="button primary" href="assets/stego-challenge.png" download>Download Stego Image</a>
-              <p class="file-note">Replace this image with your final challenge photo when ready.</p>
+          <div class="challenge-copy">
+            <div class="card-icon">🖼️</div>
+            <p class="tag">Steganography</p>
+            <h3>Hidden in Plain Sight</h3>
+            <p>
+              Our mascot posted a suspicious image with the caption: <em>“Sometimes the message is not what you see, but what you inspect.”</em>
+            </p>
+          </div>
+          <div class="challenge-work">
+            <div class="stego-asset">
+              <img class="stego-preview" src="assets/stego-challenge.png" alt="Steganography challenge preview image" />
+              <div class="file-actions">
+                <a class="button primary" href="assets/stego-challenge.png" download>Download Stego Image</a>
+                <p class="file-note">Inspect the downloaded image to find the hidden flag.</p>
+              </div>
             </div>
+            <div class="clue-box">
+              <strong>Starter clue:</strong> Download the image and inspect its metadata or strings.
+            </div>
+            <button class="hint-button" data-hint="steg">Show hint</button>
+            <p class="hint" id="hint-steg">Try tools like <code>exiftool</code>, <code>strings</code>, or checking the least obvious text inside the file.</p>
+            <form class="flag-form" data-answer="CYBER{hidden_in_plain_sight}">
+              <label for="steg-flag">Flag</label>
+              <input id="steg-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+              <button type="submit">Submit</button>
+              <p class="result" aria-live="polite"></p>
+            </form>
           </div>
-          <div class="clue-box">
-            <strong>Starter clue:</strong> Download the image and inspect its metadata or strings.
-          </div>
-          <button class="hint-button" data-hint="steg">Show hint</button>
-          <p class="hint" id="hint-steg">Try tools like <code>exiftool</code>, <code>strings</code>, or checking the least obvious text inside the file.</p>
-          <form class="flag-form" data-answer="CYBER{hidden_in_plain_sight}">
-            <label for="steg-flag">Flag</label>
-            <input id="steg-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
         </article>
 
         <article class="challenge-card crypto">
-          <div class="card-icon">🔐</div>
-          <p class="tag">Cryptography</p>
-          <h3>Shift Happens</h3>
-          <p>
-            One of our officers left this encoded note on the whiteboard:
-          </p>
-          <pre class="cipher">FLOHU{fuhdph_wkh_ixwxuh}</pre>
-          <div class="clue-box">
-            <strong>Starter clue:</strong> The alphabet moved, but not very far.
+          <div class="challenge-copy">
+            <div class="card-icon">🔐</div>
+            <p class="tag">Cryptography</p>
+            <h3>Shift Happens</h3>
+            <p>
+              One of our officers left this encoded note on the whiteboard. Decode it to recover the flag.
+            </p>
           </div>
-          <button class="hint-button" data-hint="crypto">Show hint</button>
-          <p class="hint" id="hint-crypto">This is a Caesar shift. Try shifting each letter backward by 3.</p>
-          <form class="flag-form" data-answer="CYBER{create_the_future}">
-            <label for="crypto-flag">Flag</label>
-            <input id="crypto-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
+          <div class="challenge-work">
+            <pre class="cipher">FLOHU{fuhdph_wkh_ixwxuh}</pre>
+            <div class="clue-box">
+              <strong>Starter clue:</strong> The alphabet moved, but not very far.
+            </div>
+            <button class="hint-button" data-hint="crypto">Show hint</button>
+            <p class="hint" id="hint-crypto">This is a Caesar shift. Try shifting each letter backward by 3.</p>
+            <form class="flag-form" data-answer="CYBER{create_the_future}">
+              <label for="crypto-flag">Flag</label>
+              <input id="crypto-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+              <button type="submit">Submit</button>
+              <p class="result" aria-live="polite"></p>
+            </form>
+          </div>
         </article>
 
         <article class="challenge-card forensics">
-          <div class="card-icon">🧪</div>
-          <p class="tag">Forensics</p>
-          <h3>Packet Panic</h3>
-          <p>
-            A mystery user visited the club website and sent a secret through the network. Your job is to recover it from the evidence file.
-          </p>
-          <div class="clue-box">
-            <strong>Starter clue:</strong> Ask for the PCAP at the table and filter for HTTP traffic.
+          <div class="challenge-copy">
+            <div class="card-icon">🧪</div>
+            <p class="tag">Forensics</p>
+            <h3>Packet Panic</h3>
+            <p>
+              A mystery user visited the club website and sent a secret through the network. Recover it from the evidence file.
+            </p>
           </div>
-          <button class="hint-button" data-hint="forensics">Show hint</button>
-          <p class="hint" id="hint-forensics">Open the capture in Wireshark. Try filters like <code>http</code> or search packet bytes for <code>CYBER{</code>.</p>
-          <form class="flag-form" data-answer="CYBER{follow_the_packets}">
-            <label for="forensics-flag">Flag</label>
-            <input id="forensics-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
-            <button type="submit">Submit</button>
-            <p class="result" aria-live="polite"></p>
-          </form>
+          <div class="challenge-work">
+            <div class="challenge-asset">
+              <div class="pcap-preview">packet-panic.pcap<br><span>HTTP traffic capture</span></div>
+              <div class="file-actions">
+                <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
+                <p class="file-note">Open in Wireshark or search the bytes for <code>CYBER{</code>.</p>
+              </div>
+            </div>
+            <div class="clue-box">
+              <strong>Starter clue:</strong> Download the PCAP and filter for HTTP traffic.
+            </div>
+            <button class="hint-button" data-hint="forensics">Show hint</button>
+            <p class="hint" id="hint-forensics">Open the capture in Wireshark. Try filters like <code>http</code> or search packet bytes for <code>CYBER{</code>.</p>
+            <form class="flag-form" data-answer="CYBER{follow_the_packets}">
+              <label for="forensics-flag">Flag</label>
+              <input id="forensics-flag" type="text" placeholder="CYBER{...}" autocomplete="off" />
+              <button type="submit">Submit</button>
+              <p class="result" aria-live="polite"></p>
+            </form>
+          </div>
         </article>
       </div>
     </section>
