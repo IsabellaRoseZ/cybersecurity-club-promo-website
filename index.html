@@ -142,11 +142,11 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 6vw, 5.6rem);
-      line-height: 0.92;
-      letter-spacing: -0.07em;
+      font-size: clamp(2.8rem, 5.2vw, 5rem);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
       margin-bottom: 1.3rem;
-      max-width: 760px;
+      max-width: 820px;
     }
 
     h2 {
@@ -347,7 +347,7 @@
 
     .challenge-content {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 320px 1fr;
       gap: 1.25rem;
       align-items: center;
     }
@@ -391,7 +391,7 @@
       display: grid;
       place-items: center;
       text-align: center;
-      min-height: 150px;
+      min-height: 170px;
     }
 
     .stego-preview {
@@ -434,10 +434,14 @@
     }
 
     .cipher {
-      overflow-x: auto;
       color: var(--yellow);
       width: 100%;
       margin: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      overflow-x: visible;
+      text-align: center;
+      font-size: 0.95rem;
     }
 
     .hint {
@@ -567,7 +571,7 @@
       }
 
       h1 {
-        font-size: 3.2rem;
+        font-size: 3rem;
       }
     }
   </style>
@@ -649,6 +653,13 @@
       <div class="challenge-grid">
         <article class="challenge-card steg">
           <div class="challenge-content">
+            <div class="challenge-top">
+              <div>
+                <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
+                <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
+              </div>
+            </div>
+
             <div class="challenge-main">
               <div class="card-icon">🖼️</div>
               <p class="tag">Steganography</p>
@@ -675,18 +686,15 @@
                 <p class="result" aria-live="polite"></p>
               </form>
             </div>
-
-            <div class="challenge-top">
-              <div>
-                <img class="stego-preview" src="assets/Silly%20Goose.jpg" alt="Silly Goose steganography challenge image" />
-                <a class="button primary" href="assets/Silly%20Goose.jpg" download>Download Stego Image</a>
-              </div>
-            </div>
           </div>
         </article>
 
         <article class="challenge-card crypto">
           <div class="challenge-content">
+            <div class="challenge-top">
+              <pre class="cipher">IODJ{brxu_mrxuqhb_ehjlqv_qrz}</pre>
+            </div>
+
             <div class="challenge-main">
               <div class="card-icon">🔐</div>
               <p class="tag">Cryptography</p>
@@ -713,15 +721,19 @@
                 <p class="result" aria-live="polite"></p>
               </form>
             </div>
-
-            <div class="challenge-top">
-              <pre class="cipher">IODJ{brxu_mrxuqhb_ehjlqv_qrz}</pre>
-            </div>
           </div>
         </article>
 
         <article class="challenge-card forensics">
           <div class="challenge-content">
+            <div class="challenge-top">
+              <div class="pcap-box">
+                <div class="pcap-icon">📦</div>
+                <div class="pcap-name">packet-panic.pcap</div>
+                <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
+              </div>
+            </div>
+
             <div class="challenge-main">
               <div class="card-icon">🧪</div>
               <p class="tag">Forensics</p>
@@ -747,14 +759,6 @@
                 <button type="submit">Submit</button>
                 <p class="result" aria-live="polite"></p>
               </form>
-            </div>
-
-            <div class="challenge-top">
-              <div class="pcap-box">
-                <div class="pcap-icon">📦</div>
-                <div class="pcap-name">packet-panic.pcap</div>
-                <a class="button primary" href="assets/packet-panic.pcap" download>Download PCAP</a>
-              </div>
             </div>
           </div>
         </article>
